@@ -83,7 +83,7 @@ function getArrayParams(...arr) {
 		countEvenElement++;
 	  }
 	}
-	return sumEventElement / countEvenElement;
+	return Number((sumEventElement / countEvenElement).toFixed(3));
   };
   console.log(averageEvenElementsWorker(15, 97, 85, 64, 67, 10, 69, 40, 15, 35));
   
@@ -99,7 +99,7 @@ function makeWork(func, ...arrOfArr) {
 	let maxWorkerResult = -Infinity;
 	for (i = 0; i < arrOfArr.length; i++) {
 		const result = func(...arrOfArr[i]);
-		if (arr.length <= 0) {
+		if (arrOfArr.length <= 0) {
 
 			return 0;
 		} else if (result > maxWorkerResult) {

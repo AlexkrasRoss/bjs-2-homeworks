@@ -34,10 +34,7 @@ console.log(summElementsWorker(10, 10, 11, 20, 10));
 function differenceMaxMinWorker(...arr) {
 	min = Math.min(...arr);
 	max = Math.max(...arr);
-	if (arr.length <= 0) {
 
-		return 0;
-	}
 	return max - min;
 
 };

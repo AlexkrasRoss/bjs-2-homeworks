@@ -84,9 +84,6 @@ class Library {
 	}
 	giveBookByName(bookName) {
 		const book = this.findBookBy(bookName);
-		if (book === undefined){
-			return null;
-		  }
 		if (book) {
 			this.books.splice(this.books.indexOf(book), 1);
 		}

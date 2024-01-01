@@ -7,10 +7,9 @@ class PrintEditionItem {
 		this.type = type;
 	}
 	fix() {
-		if (this.state < 100) {
-			this.state = this.answer * 1.5;
-		}
-		return this.state
+		
+		this.state = this.answer * 1.5;
+		
 	}
 	set state(sum) {
 		if (this.state === undefined) {
@@ -22,7 +21,7 @@ class PrintEditionItem {
 		if (sum < 100) {
 			this.answer = sum;
 		}
-		if (sum > 100) {
+		if (sum >= 100) {
 			this.answer = 100;
 		}
 	}
@@ -31,11 +30,9 @@ class PrintEditionItem {
 	}
 }
 class Magazine extends PrintEditionItem {
-	constructor(name, releaseDate, pagesCount, state, type) {
-		super(name, releaseDate, pagesCount, state, type)
-		this.type = "magazine";
+	type = "magazine";
 	}
-}
+
 class Book extends PrintEditionItem {
 	constructor(author, name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount)
@@ -44,23 +41,16 @@ class Book extends PrintEditionItem {
 	}
 }
 class NovelBook extends Book {
-	constructor(author, name, releaseDate, pagesCount) {
-		super(author, name, releaseDate, pagesCount)
-		this.type = "novel";
+		type = "novel";
 	}
-}
+
 class FantasticBook extends Book {
-	constructor(author, name, releaseDate, pagesCount) {
-		super(author, name, releaseDate, pagesCount)
-		this.type = "fantastic";
-	}
+		type = "fantastic";
 }
 class DetectiveBook extends Book {
-	constructor(author, name, releaseDate, pagesCount) {
-		super(author, name, releaseDate, pagesCount)
-		this.type = "detective";
+		type = "detective";
 	}
-}
+
 class Library {
 	constructor(name) {
 		if (typeof name === "string") {
@@ -91,3 +81,4 @@ class Library {
 	}
 
 }
+

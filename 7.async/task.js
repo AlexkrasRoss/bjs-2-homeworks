@@ -8,27 +8,27 @@ class AlarmClock {
 	addClock(time, callback, canCall) {
 		this.time = time;
 		this.callback = callback;
-		this.canCall === true;
+		this.canCall = true;
+
 		if (this.time === null || this.callback === undefined) {
 			throw new Error(" Отсутствуют обязательные аргументы ");
 		}
 
-		if (this.alarmCollection.find(call => call === time)) {
+		if (this.alarmCollection.filter(call => call === this.time)) {
 			console.warn(" Уже присутствует звонок на это же время ");
+		} else {
+			this.alarmCollection.push(time);
 		}
 
-		if (this.canCall) {
-			this.alarmCollection.forEach(call => call.time.getHours() === new Date().getHours() && call.time.getMinutes() === new Date().getMinutes())
-				.map(call => call.callback);
-			return call;
-		} else {
-			this.canCall === false;
+
+		if (this.alarmCollection.forEach(call => call.time.getHours() === new Date().getHours() && call.time.getMinutes() === new Date().getMinutes())) {
+			return call
 		}
 
 		let arr = {
 			callback,
 			time,
-			canCall
+			canCall,
 		}
 		this.alarmCollection.push(arr);
 
@@ -43,7 +43,15 @@ class AlarmClock {
 
 	/*`getCurrentFormattedTime` — возвращает текущее время в строковом формате `HH:MM`. */
 	getCurrentFormattedTime() {
-		return `${new Date().getHours()}:${new Date().getMinutes()}`;
+		this.hours = new Date().getHours();
+		if (this.hours < 10) {
+			this.hours = '0' + this.hours;
+		}
+		this.minutes = new Date().getMinutes()
+		if (this.minutes < 10) {
+			this.minutes = '0' + this.minutes;
+		}
+		return `${this.hours}:${this.minutes}`;
 	}
 
 	/*`start` — запускает будильник. */

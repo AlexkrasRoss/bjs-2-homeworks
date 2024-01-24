@@ -6,7 +6,7 @@ class AlarmClock {
 
 	/*`addClock` — добавляет новый звонок в коллекцию существующих. */
 	addClock(time, callback) {
-		if (time === null || callback === undefined) {
+		if (!time || !callback) {
 			throw new Error(" Отсутствуют обязательные аргументы ");
 		}
 
@@ -18,15 +18,12 @@ class AlarmClock {
 			callback,
 			canCall: true,
 		})
-		if (this.canCall = true) {
-			this.callback = this.alarmCollection.filter(eliment => eliment.time === this.getCurrentFormattedTime())
-		}
 	}
 
 	/*removeClock` — удаляет звонки по определённому времени. */
 
 	removeClock(time) {
-		return this.alarmCollection.filter(eliment => eliment.time !== time);
+		this.alarmCollection = this.alarmCollection.filter(eliment => eliment.time !== time);
 	}
 
 	/*`getCurrentFormattedTime` — возвращает текущее время в строковом формате `HH:MM`. */
@@ -40,17 +37,17 @@ class AlarmClock {
 	/*`start` — запускает будильник. */
 	start() {
 		if (this.intervalId) {
-			return stop();
+			return;
 		}
-		if (!this.alarmCollection) {
-			this.intervalId = setInterval(() => {
-				this.alarmCollection.forEach(eliment => {
-					if (eliment.time === this.getCurrentFormattedTime() && this.canCall === true) {
-						return callback();
-					}
-				})
-			}, 1000);
-		}
+		this.intervalId = setInterval(() => {
+			this.alarmCollection.forEach(eliment => {
+				if (eliment.time === this.getCurrentFormattedTime() && eliment.canCall) {
+					eliment.canCall = false;
+					eliment.callback();
+				}
+			})
+		}, 1000);
+
 	}
 
 	// /*`stop` — останавливает выполнение интервала будильника. */
